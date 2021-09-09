@@ -9,18 +9,24 @@
 // no direct access
 defined( '_JEXEC' ) or die( 'Restricted access' );
 
-jimport('joomla.plugin.plugin');
+use Joomla\CMS\Factory;
+use Joomla\CMS\Language\LanguageHelper;
+use Joomla\CMS\Language\Text;
+use Joomla\CMS\Plugin\CMSPlugin;
 
-class plgSystemMouseOverZoom extends JPlugin
+class plgSystemMouseOverZoom extends CMSPlugin
 {
+	protected $app;
 
 	public function onAfterRender()
 	{
-		$app = JFactory::getApplication();
-
-		if($app->isSite())
+		if($this->app->isClient('site'))
 		{
-			$output = JResponse::getBody();
+			//$output = JFactory::getApplication()->getBody();
+			$output = $this->app->getBody();
+			print_r($output);
+			echo '$output=***'.$output.'%%%';
+						
 			$jscode='';
 
 			require_once(JPATH_SITE.DIRECTORY_SEPARATOR.'plugins'.DIRECTORY_SEPARATOR.'system'.DIRECTORY_SEPARATOR.'mouseoverzoom'.DIRECTORY_SEPARATOR.'mouseoverzoom'.DIRECTORY_SEPARATOR.'render.php');
@@ -44,7 +50,7 @@ class plgSystemMouseOverZoom extends JPlugin
 			if($jscode!='')
 				$output=str_replace('</head>',$jscode.'</head>',$output);
 
-			JResponse::setBody($output);
+			$this->app->setBody($output);
 		}
 
 	}
