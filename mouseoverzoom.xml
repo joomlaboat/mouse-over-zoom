@@ -2,12 +2,12 @@
 <extension version="2.5" type="plugin" group="content" method="upgrade">
 	<name>MouseOverZoom</name>
 	<author>Joomla Boat</author>
-	<creationDate>September 2021</creationDate>
-	<copyright>Copyright (C) 2010-2021 Joomla Boat. All rights reserved.</copyright>
+	<creationDate>August 2022</creationDate>
+	<copyright>Copyright (C) 2010-2022 Joomla Boat. All rights reserved.</copyright>
     <license>GNU General Public License</license>
     <authorEmail>support@joomlaboat.com</authorEmail>
     <authorUrl>https://joomlaboat.com/</authorUrl>
-	<version>1.3.3</version>
+	<version>1.3.4</version>
 	<description>PLG_CONTENT_MOUSEOVERZOOM_DESCRIPTION_PRO</description>
 	<files>
 		<filename plugin="mouseoverzoom">mouseoverzoom.php</filename>
