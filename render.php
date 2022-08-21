@@ -34,7 +34,7 @@ class MouseOverZoomRender
 
         if ($foundCount > 0)
             $jsCode = MouseOverZoomRender::getJSCode($jQueryLibraryLink, $imageList, $triggerEvent, $checkWindowSize, $defaultDegree);
-    }
+ }
 
     protected static function strip_html_tags_textarea($text)
     {
@@ -43,10 +43,10 @@ class MouseOverZoomRender
         return preg_replace($pattern1, $pattern2, $text);
     }
 
-    protected static function ApplyImageClass($text, &$text_original, $applytoclass, $defaultzoomfactor, $bigimagepostfix, $triggerevent, &$imagelist, &$foundCount, $defaul_degree)
+    protected static function ApplyImageClass($text, &$text_original, $applyToClass, $defaultZoomFactor, $bigImagePostfix, $triggerEvent, &$imageList, &$foundCount, $defaultDegree)
     {
-        if ($applytoclass == '')
-            $applytoclass = 'mouseoverzoom';
+        if ($applyToClass == '')
+            $applyToClass = 'mouseoverzoom';
 
         $foundCount = 0;
         $pl = 0;
@@ -68,7 +68,7 @@ class MouseOverZoomRender
                     $tag = substr($text, $p, $pe - $p + 1);
                     $classname = MouseOverZoomRender::getAttribute('class', $tag);
 
-                    if ($classname == $applytoclass) {
+                    if ($classname == $applyToClass) {
                         $src = MouseOverZoomRender::getAttribute('src', $tag);
                         $width = (int)MouseOverZoomRender::getAttribute('width', $tag);
                         $height = (int)MouseOverZoomRender::getAttribute('height', $tag);
@@ -76,7 +76,7 @@ class MouseOverZoomRender
                         $img_alt = MouseOverZoomRender::getAttribute('alt', $tag);
                         $img_title = MouseOverZoomRender::getAttribute('title', $tag);
 
-                        $newTag = MouseOverZoomRender::getMOZCode($src, $bigimagepostfix, $triggerevent, $defaultzoomfactor, $imagelist, $width, $height, $zoomFactor, $img_alt, $img_title, $defaul_degree);
+                        $newTag = MouseOverZoomRender::getMOZCode($src, $bigImagePostfix, $triggerEvent, $defaultZoomFactor, $imageList, $width, $height, $zoomFactor, $img_alt, $img_title, $defaultDegree);
                         if ($newTag != '') {
                             $foundCount++;
                             $text_original = str_replace($tag, $newTag, $text_original);
@@ -470,7 +470,7 @@ class MouseOverZoomRender
         $CodeToGo = '';
 
         if ($jqueryLibraryLink == '')
-            $jqueryLibraryLink = 'http://code.jquery.com/jquery.min.js';
+            $jqueryLibraryLink = 'https://code.jquery.com/jquery.min.js';
 
         if ($jqueryLibraryLink != '-') {
             $CodeToGo = '
