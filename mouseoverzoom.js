@@ -1,8 +1,8 @@
 //https://stackoverflow.com/questions/15191058/css-rotation-cross-browser-with-jquery-animate
 jQuery(function ($) {
     $.fn.animateRotate = function (from_angle, to_angle, duration, easing, complete) {
-        var args = $.speed(duration, easing, complete);
-        var step = args.step;
+        const args = $.speed(duration, easing, complete);
+        const step = args.step;
         return this.each(function (i, e) {
             args.complete = $.proxy(args.complete, e);
             args.step = function (now) {
@@ -15,15 +15,14 @@ jQuery(function ($) {
     };
 });
 
-
-function MOZDoTheJob(obj, checkwindowsize, classname, classState, triggerevent, width, height, zoomfactor, degree) {
+function MOZDoTheJob(obj, checkWindowSize, classname, classState, triggerEvent, width, height, zoomFactor, degree) {
     //step 1
-    if (checkwindowsize != '') {
-        var cwsp = checkwindowsize.split('x');
-        if (cwsp.length == 2) {
-            var w = parseInt(cwsp[0]);
+    if (checkWindowSize !== '') {
+        const checkWindowSizeParts = checkWindowSize.split('x');
+        if (checkWindowSizeParts.length === 2) {
+            let w = parseInt(checkWindowSizeParts[0]);
             if (isNaN(w)) w = 0;
-            var h = parseInt(cwsp[1]);
+            let h = parseInt(checkWindowSizeParts[1]);
             if (isNaN(h)) h = 0;
 
             if (MOZclientWidth() < w || MOZclientHeight() < h)
@@ -36,15 +35,14 @@ function MOZDoTheJob(obj, checkwindowsize, classname, classState, triggerevent, 
     document.getElementById(classname + "_big").style.visibility = 'visible';
     document.getElementById(classname + "_id").style.zIndex = '1000';
 
-    var width_big = width * zoomfactor;
-    var height_big = height * zoomfactor;
+    const width_big = width * zoomFactor;
+    const height_big = height * zoomFactor;
+    const HorizontalOffset = MOZfindHorizontalOffset(classname + "_id", width, width_big);
+    const VerticalOffset = MOZfindVerticalOffset(classname + "_id", height, height_big);
+    const MarginLeft = -((width_big / 2) - width / 2) + HorizontalOffset;
+    const MarginTop = -((height_big / 2) - height / 2) + VerticalOffset;
 
-    var HorizontalOffset = MOZfindHorizontalOffset(classname + "_id", width, width_big);
-    var VerticalOffset = MOZfindVerticalOffset(classname + "_id", height, height_big);
-    var MarginLeft = -((width_big / 2) - width / 2) + HorizontalOffset;
-    var MarginTop = -((height_big / 2) - height / 2) + VerticalOffset;
-
-    classState = MOZDoTheJob_JQuery(obj, classname, classState, triggerevent, width, height, width_big, height_big, MarginLeft, MarginTop, degree);
+    classState = MOZDoTheJob_JQuery(obj, classname, classState, triggerEvent, width, height, width_big, height_big, MarginLeft, MarginTop, degree);
     return classState;
 }
 
@@ -62,7 +60,7 @@ function MOZHideImage(classname) {
 }
 
 function MOZDoTheJob_JQuery_moc(obj, classname, classState, triggerevent, width, height, width_big, height_big, MarginLeft, MarginTop, degree) {
-    if (classState == 0) {
+    if (classState === 0) {
         classState = 1;
 
         jQuery(obj).find('img')
@@ -123,7 +121,7 @@ function MOZUndoTheJob(obj, classname, width, height, degree) {
 }
 
 function MOZDoTheJob_JQuery(obj, classname, classState, triggerevent, width, height, width_big, height_big, MarginLeft, MarginTop, degree) {
-    if (triggerevent == 'moc')
+    if (triggerevent === 'moc')
         classState = MOZDoTheJob_JQuery_moc(obj, classname, classState, triggerevent, width, height, width_big, height_big, MarginLeft, MarginTop, degree);
     else
         classState = MOZDoTheJob_JQuery_moz(obj, classname, classState, triggerevent, width, height, width_big, height_big, MarginLeft, MarginTop, degree);
@@ -133,21 +131,21 @@ function MOZDoTheJob_JQuery(obj, classname, classState, triggerevent, width, hei
 
 
 function MOZfindVerticalOffset(id, height, zoomed_height) {
-    var node = document.getElementById(id);
-    var curtop = 0;
-    var curtopscroll = 0;
-    var scroll_top = MOZscrollTop();
-    var scroll_height = MOZclientHeight();
+    let node = document.getElementById(id);
+    let curtop = 0;
+    let curtopscroll = 0;
+    const scroll_top = MOZscrollTop();
+    const scroll_height = MOZclientHeight();
+    let VerticalOffset = 0;
 
-    var VerticalOffset = 0;
     if (node.offsetParent) {
         do {
             curtop += node.offsetTop;
             curtopscroll = 0;//+= node.offsetParent ? node.offsetParent.scrollTop : 0;
         } while (node = node.offsetParent);
 
-        var imaged_y = (curtop - curtopscroll) - scroll_top;
-        var zoomed_y = imaged_y - ((zoomed_height / 2) - height / 2);
+        const imaged_y = (curtop - curtopscroll) - scroll_top;
+        const zoomed_y = imaged_y - ((zoomed_height / 2) - height / 2);
 
         if (zoomed_height > scroll_height) {
             VerticalOffset = -zoomed_y - (zoomed_height - scroll_height) / 2;
@@ -163,23 +161,22 @@ function MOZfindVerticalOffset(id, height, zoomed_height) {
     return VerticalOffset;
 }
 
-
 function MOZfindHorizontalOffset(id, width, zoomed_width) {
-    var node = document.getElementById(id);
-    var curleft = 0;
-    var curleftscroll = 0;
-    var scroll_left = MOZscrollLeft();
-    var scroll_width = MOZclientWidth();
+    let node = document.getElementById(id);
+    let curleft = 0;
+    let curleftscroll = 0;
+    const scroll_left = MOZscrollLeft();
+    const scroll_width = MOZclientWidth();
+    let HorizontalOffset = 0;
 
-    var HorizontalOffset = 0;
     if (node.offsetParent) {
         do {
             curleft += node.offsetLeft;
             curleftscroll = 0;//+= node.offsetParent ? node.offsetParent.scrollLeft : 0;
         } while (node = node.offsetParent);
 
-        var imaged_x = (curleft - curleftscroll) - scroll_left;
-        var zoomed_x = imaged_x - ((zoomed_width / 2) - width / 2);
+        const imaged_x = (curleft - curleftscroll) - scroll_left;
+        const zoomed_x = imaged_x - ((zoomed_width / 2) - width / 2);
 
         if (zoomed_width > scroll_width) {
             HorizontalOffset = -zoomed_x - ((zoomed_width - scroll_width) / 2);
