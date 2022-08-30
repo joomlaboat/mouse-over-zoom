@@ -474,8 +474,8 @@ class MouseOverZoomRender
 
         if ($jqueryLibraryLink != '-') {
             $CodeToGo = '
-			<script type="text/javascript" src="' . $jqueryLibraryLink . '"></script>
-			<script type="text/javascript" src="' . JURI::root(true) . '/plugins/content/mouseoverzoom/mouseoverzoom.js"></script>
+			<script src="' . $jqueryLibraryLink . '"></script>
+			<script src="' . JURI::root(true) . '/plugins/content/mouseoverzoom/mouseoverzoom.js"></script>
 			';
         }
 
