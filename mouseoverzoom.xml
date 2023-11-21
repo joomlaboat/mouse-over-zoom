@@ -1,28 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <extension version="2.5" type="plugin" group="content" method="upgrade">
-	<name>MouseOverZoom</name>
-	<author>Joomla Boat</author>
-	<creationDate>August 2022</creationDate>
-	<copyright>Copyright (C) 2010-2022 Joomla Boat. All rights reserved.</copyright>
+    <name>MouseOverZoom</name>
+    <author>Joomla Boat</author>
+    <creationDate>November 2023</creationDate>
+    <copyright>Copyright (C) 2010-2023 Joomla Boat. All rights reserved.</copyright>
     <license>GNU General Public License</license>
     <authorEmail>support@joomlaboat.com</authorEmail>
     <authorUrl>https://joomlaboat.com/</authorUrl>
-	<version>1.3.4</version>
-	<description>PLG_CONTENT_MOUSEOVERZOOM_DESCRIPTION_PRO</description>
-	<files>
-		<filename plugin="mouseoverzoom">mouseoverzoom.php</filename>
-		<filename>LICENSE.txt</filename>
-		<filename>mouseoverzoom.js</filename>
-		<filename>render.php</filename>
-	</files>
+    <version>1.3.5</version>
+    <description>PLG_CONTENT_MOUSEOVERZOOM_DESCRIPTION_PRO</description>
+    <files>
+        <filename plugin="mouseoverzoom">mouseoverzoom.php</filename>
+        <filename>LICENSE.txt</filename>
+        <filename>mouseoverzoom.js</filename>
+        <filename>render.php</filename>
+    </files>
 
-	<config>
-	<fields name="params">
-		<fieldset name="basic">
+    <config>
+        <fields name="params">
+            <fieldset name="basic">
 
-		<field type="text" name="jquerylibrarylink" size="60" default="https://code.jquery.com/jquery.min.js" label="JQuery Link" description="Set path to the current version of JQuery or put '-' if you going to include your own link or it comes with another extension." />
+                <field type="text" name="jquerylibrarylink" size="60" default="https://code.jquery.com/jquery.min.js"
+                       label="JQuery Link"
+                       description="Set path to the current version of JQuery or put '-' if you going to include your own link or it comes with another extension."/>
 
-	        <field
+                <field
                         name="checkwindowsize"
                         type="list"
                         label="Disable if window is less than"
@@ -30,17 +32,16 @@
                         class="inputbox"
                         default="0"
                 >
-			<option value="">- No window size check</option>
-                        <option value="1024x768">1024 x 768</option>
-                        <option value="800x600">800 x 600</option>
-			<option value="600x480">600 x 480</option>
-			<option value="480x320">480 x 320</option>
-			<option value="320x480">320 x 480</option>
+                    <option value="">- No window size check</option>
+                    <option value="1024x768">1024 x 768</option>
+                    <option value="800x600">800 x 600</option>
+                    <option value="600x480">600 x 480</option>
+                    <option value="480x320">480 x 320</option>
+                    <option value="320x480">320 x 480</option>
                 </field>
 
 
-
-		<field
+                <field
                         name="applytoclass"
                         type="text"
                         label="Apply to Class"
@@ -50,7 +51,7 @@
                 />
 
 
-		<field
+                <field
                         name="bigimagepostfix"
                         type="text"
                         label="Zoomed image postfix"
@@ -60,7 +61,7 @@
                 />
 
 
-		<field
+                <field
                         name="defaultzoomfactor"
                         type="text"
                         label="Default Zoom Factor"
@@ -70,7 +71,7 @@
                 />
 
 
-		<field
+                <field
                         name="triggerevent"
                         type="list"
                         label="Trigger Event"
@@ -78,23 +79,23 @@
                         class="inputbox"
                         default="moz"
                 >
-                        <option value="moz">Mouse Over (hover)</option>
-                        <option value="moc">Mouse Click (no link)</option>
+                    <option value="moz">Mouse Over (hover)</option>
+                    <option value="moc">Mouse Click (no link)</option>
                 </field>
 
-		<!--<field
-                        name="method"
-                        type="list"
-                        label="Effect Method"
-                        description="What technolgy to use for the zoom-in effect."
-                        class="inputbox"
-                        default="js"
-                >
-                        <option value="js">Java Script</option>
-                        <option value="css">CSS (HTML5)</option>
-                </field>-->
+                <!--<field
+                                name="method"
+                                type="list"
+                                label="Effect Method"
+                                description="What technolgy to use for the zoom-in effect."
+                                class="inputbox"
+                                default="js"
+                        >
+                                <option value="js">Java Script</option>
+                                <option value="css">CSS (HTML5)</option>
+                        </field>-->
 
-		<field
+                <field
                         name="rotate"
                         type="text"
                         label="Rotate degree"
@@ -103,7 +104,7 @@
                         default="-3"
                 />
 
-		<field
+                <field
                         name="avoidtextarea"
                         type="radio"
                         label="Avoid TEXTAREA tags"
@@ -111,22 +112,21 @@
                         class="btn-group"
                         default="0"
                 >
-                        <option value="0">No</option>
-                        <option value="1">Yes</option>
+                    <option value="0">No</option>
+                    <option value="1">Yes</option>
                 </field>
-		</fieldset>
+            </fieldset>
 
-	</fields>
-	</config>
+        </fields>
+    </config>
 
-	<languages folder="language">
-		<language tag="en-GB">en-GB/en-GB.plg_content_mouseoverzoom.ini</language>
-		<language tag="en-GB">en-GB/en-GB.plg_content_mouseoverzoom.sys.ini</language>
-	</languages>
+    <languages folder="language">
+        <language tag="en-GB">en-GB/en-GB.plg_content_mouseoverzoom.ini</language>
+        <language tag="en-GB">en-GB/en-GB.plg_content_mouseoverzoom.sys.ini</language>
+    </languages>
 
-	<updateservers>
-	    <server type="extension" enabled="1" element="plg_mouseoverzoom" priority="2" name="Mouse Over Zoom">link</server>
-	</updateservers>
-
-
+    <updateservers>
+        <server type="extension" enabled="1" element="plg_mouseoverzoom" priority="2" name="Mouse Over Zoom">link
+        </server>
+    </updateservers>
 </extension>

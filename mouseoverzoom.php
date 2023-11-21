@@ -16,34 +16,33 @@ use Joomla\CMS\Plugin\CMSPlugin;
 
 class plgContentMouseOverZoom extends CMSPlugin
 {
-    public function onContentPrepare($context, $article, $params, $limitStart = 0)
-    {
-        $output = $article->text;
-        $JSCode = '';
+	public function onContentPrepare($context, $article, $params, $limitStart = 0)
+	{
+		$output = $article->text;
+		$JSCode = '';
 
-        require_once(JPATH_SITE . DIRECTORY_SEPARATOR . 'plugins' . DIRECTORY_SEPARATOR . 'content' . DIRECTORY_SEPARATOR . 'mouseoverzoom' . DIRECTORY_SEPARATOR . 'render.php');
+		require_once(JPATH_SITE . DIRECTORY_SEPARATOR . 'plugins' . DIRECTORY_SEPARATOR . 'content' . DIRECTORY_SEPARATOR . 'mouseoverzoom' . DIRECTORY_SEPARATOR . 'render.php');
 
-        $MouseOverZoomRenderer = new MouseOverZoomRender;
+		$MouseOverZoomRenderer = new MouseOverZoomRender;
 
-        $MouseOverZoomRenderer->ApplyPlugin(
-            $output,
-            $JSCode,
-            $this->params->get('jquerylibrarylink'),
-            $this->params->get('checkwindowsize'),
-            $this->params->get('avoidtextarea'),
-            $this->params->get('applytoclass'),
-            $this->params->get('defaultzoomfactor'),
-            $this->params->get('bigimagepostfix'),
-            $this->params->get('triggerevent'),
-            (int)$this->params->get('rotate')
-        );
+		$MouseOverZoomRenderer->ApplyPlugin(
+			$output,
+			$JSCode,
+			$this->params->get('jquerylibrarylink'),
+			$this->params->get('checkwindowsize'),
+			$this->params->get('avoidtextarea'),
+			$this->params->get('applytoclass'),
+			$this->params->get('defaultzoomfactor'),
+			$this->params->get('bigimagepostfix'),
+			$this->params->get('triggerevent'),
+			(int)$this->params->get('rotate')
+		);
 
-        if ($JSCode != '')
-        {
-            $app = Factory::getApplication();
-            $document = $app->getDocument();
-            $document->addCustomTag($JSCode);
-        }
-        $article->text = $output;
-    }
+		if ($JSCode != '') {
+			$app = Factory::getApplication();
+			$document = $app->getDocument();
+			$document->addCustomTag($JSCode);
+		}
+		$article->text = $output;
+	}
 }
